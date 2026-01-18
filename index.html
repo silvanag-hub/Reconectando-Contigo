@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reconecta Contigo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ==================== ESTILOS DE LA PORTADA ==================== */
+    .cover-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, 
+        #ff6b9d 0%, 
+        #c239b3 25%, 
+        #9333ea 50%, 
+        #4f46e5 75%, 
+        #06b6d4 100%);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: float-particle 20s infinite;
+      opacity: 0.3;
+    }
+
+    .particle:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, #fbbf24, #f59e0b);
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .particle:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, #f472b6, #ec4899);
+      top: 70%;
+      left: 80%;
+      animation-delay: 5s;
+    }
+
+    .particle:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #60a5fa, #3b82f6);
+      top: 40%;
+      left: 5%;
+      animation-delay: 10s;
+    }
+
+    .particle:nth-child(4) {
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle, #a78bfa, #8b5cf6);
+      top: 20%;
+      left: 85%;
+      animation-delay: 15s;
+    }
+
+    @keyframes float-particle {
+      0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-30px) translateX(30px) rotate(90deg);
+      }
+      50% {
+        transform: translateY(-60px) translateX(-30px) rotate(180deg);
+      }
+      75% {
+        transform: translateY(-30px) translateX(-60px) rotate(270deg);
+      }
+    }
+
+    .cover-container {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 3rem;
+      max-width: 800px;
+    }
+
+    .emoji-3d {
+      font-size: 8rem;
+      margin-bottom: 2rem;
+      animation: float-emoji 4s ease-in-out infinite;
+      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
+      transform-style: preserve-3d;
+      display: inline-block;
+    }
+
+    @keyframes float-emoji {
+      0%, 100% {
+        transform: translateY(0px) rotateY(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotateY(15deg);
+      }
+    }
+
+    .cover-title {
+      font-family: 'Crimson Text', serif;
+      font-size: 5.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffffff 0%, #fef3c7 50%, #fde68a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+      line-height: 1.1;
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+      }
+      50% {
+        filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.8));
+      }
+    }
+
+    .cover-subtitle {
+      font-size: 1.5rem;
+      color: #ffffff;
+      font-weight: 300;
+      margin-bottom: 3rem;
+      letter-spacing: 0.05em;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      animation: fadeInCover 2s ease-out;
+    }
+
+    @keyframes fadeInCover {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cover-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      animation: fadeInCover 2.5s ease-out;
+    }
+
+    .cover-feature {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cover-feature:hover {
+      transform: translateY(-5px) scale(1.05);
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .cover-card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .cover-card-content.expanded {
+      max-height: 200px;
+    }
+
+    .feature-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+      display: inline-block;
+      animation: bounceCover 2s ease-in-out infinite;
+    }
+
+    @keyframes bounceCover {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .cover-feature:nth-child(1) .feature-emoji { animation-delay: 0s; }
+    .cover-feature:nth-child(2) .feature-emoji { animation-delay: 0.2s; }
+    .cover-feature:nth-child(3) .feature-emoji { animation-delay: 0.4s; }
+    .cover-feature:nth-child(4) .feature-emoji { animation-delay: 0.6s; }
+
+    .feature-title {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1.25rem 3rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #4f46e5;
+      background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
+      border: none;
+      border-radius: 3rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: fadeInCover 3s ease-out;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #fef3c7 0%, #ffffff 100%);
+    }
+
+    .footer-info {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.875rem;
+      font-weight: 300;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+    }
+
+    .author {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .year {
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkleCover 3s ease-in-out infinite;
+    }
+
+    @keyframes sparkleCover {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .sparkle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+    .sparkle:nth-child(2) { top: 40%; left: 80%; animation-delay: 0.5s; }
+    .sparkle:nth-child(3) { top: 60%; left: 30%; animation-delay: 1s; }
+    .sparkle:nth-child(4) { top: 80%; left: 70%; animation-delay: 1.5s; }
+    .sparkle:nth-child(5) { top: 30%; left: 60%; animation-delay: 2s; }
+    .sparkle:nth-child(6) { top: 70%; left: 40%; animation-delay: 2.5s; }
+
+    .app-page {
+      display: none;
+    }
+
+    .app-page.active {
+      display: block;
+    }
+
+    /* ==================== ESTILOS DE LA APLICACIÓN ==================== */
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fff1f2 0%, #fce7f3 50%, #fef3c7 100%);
+    }
+
+    h1, h2, h3 {
+      font-family: 'Crimson Text', serif;
+    }
+
+    .container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 2rem;
+      }
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #374151;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .back-btn:hover {
+      color: #f43f5e;
+    }
+
+    .icons-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    .home-header {
+      text-align: center;
+      padding: 2rem 0;
+      margin-bottom: 2rem;
+    }
+
+    .person-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .person-icon {
+      width: 5rem;
+      height: 5rem;
+      color: #fb7185;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .person-glow {
+      position: absolute;
+      inset: 0;
+      background: #fda4af;
+      opacity: 0.2;
+      filter: blur(2rem);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .main-title {
+      font-size: 2.25rem;
+      color: #1f2937;
+      margin-bottom: 1rem;
+    }
+
+    .main-subtitle {
+      font-size: 1.125rem;
+      color: #4b5563;
+      max-width: 42rem;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .card-btn {
+      padding: 2rem;
+      border-radius: 1.5rem;
+      border: 2px solid;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+      background: white;
+      width: 100%;
+    }
+
+    .card-btn:hover {
+      transform: translateY(-0.25rem);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .card-rose {
+      background: linear-gradient(135deg, #fff1f2, #fce7f3);
+      border-color: #fecdd3;
+    }
+
+    .card-rose:hover {
+      border-color: #fda4af;
+    }
+
+    .card-amber {
+      background: linear-gradient(135deg, #fffbeb, #fed7aa);
+      border-color: #fde68a;
+    }
+
+    .card-amber:hover {
+      border-color: #fcd34d;
+    }
+
+    .card-sky {
+      background: linear-gradient(135deg, #f0f9ff, #dbeafe);
+      border-color: #bae6fd;
+    }
+
+    .card-sky:hover {
+      border-color: #7dd3fc;
+    }
+
+    .card-violet {
+      background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+      border-color: #ddd6fe;
+    }
+
+    .card-violet:hover {
+      border-color: #c4b5fd;
+    }
+
+    .card-emerald {
+      background: linear-gradient(135deg, #f0fdf4, #d1fae5);
+      border-color: #a7f3d0;
+    }
+
+    .card-emerald:hover {
+      border-color: #6ee7b7;
+    }
+
+    .card-icon-wrapper {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .card-btn:hover .card-icon-wrapper {
+      transform: scale(1.1);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-description {
+      color: #4b5563;
+    }
+
+    .card-badge {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .exercise-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      border: 2px solid;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .exercise-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .exercise-icon-circle {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .exercise-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .exercise-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .exercise-subtitle {
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+
+    .checkbox-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: start;
+      gap: 0.75rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      transition: background-color 0.3s;
+      cursor: pointer;
+    }
+
+    .checkbox-item:hover {
+      background-color: #fff1f2;
+    }
+
+    .checkbox-input {
+      margin-top: 0.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      accent-color: #f43f5e;
+      cursor: pointer;
+    }
+
+    .checkbox-label {
+      flex: 1;
+      color: #374151;
+    }
+
+    .info-box {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border: 1px solid;
+    }
+
+    .info-box-rose {
+      background-color: #fff1f2;
+      border-color: #fecdd3;
+    }
+
+    .info-box-amber {
+      background-color: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    .info-box-purple {
+      background-color: #faf5ff;
+      border-color: #e9d5ff;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      resize: none;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.3s;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: transparent;
+      box-shadow: 0 0 0 2px #fda4af;
+    }
+
+    .quote-box {
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background-color: #f9fafb;
+      border-left: 4px solid #9ca3af;
+    }
+
+    .quote-label {
+      font-size: 0.875rem;
+      color: #4b5563;
+      margin-bottom: 0.5rem;
+    }
+
+    .quote-text {
+      color: #1f2937;
+      font-style: italic;
+    }
+
+    .response-box {
+      padding: 1rem;
+      border-radius: 0.75rem;
+      border-left: 4px solid;
+    }
+
+    .response-box-amber {
+      background-color: #fffbeb;
+      border-color: #fbbf24;
+    }
+
+    .value-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .value-card {
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: 2px solid #fde68a;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: left;
+      width: 100%;
+      min-height: 140px;
+    }
+
+    .value-card:hover {
+      border-color: #fbbf24;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .value-card.selected {
+      background: linear-gradient(135deg, #fef3c7, #fed7aa);
+      border-color: #fbbf24;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transform: scale(1.05);
+    }
+
+    .value-card-content {
+      display: flex;
+      align-items: start;
+      gap: 0.75rem;
+    }
+
+    .value-checkbox {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      border: 2px solid #d1d5db;
+      margin-top: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .value-checkbox.selected {
+      border-color: #f59e0b;
+      background-color: #f59e0b;
+    }
+
+    .value-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.25rem;
+    }
+
+    .value-description {
+      font-size: 0.875rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(to right, #0ea5e9, #3b82f6);
+      color: white;
+      padding: 0.75rem;
+      border-radius: 0.75rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(to right, #0284c7, #2563eb);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .journal-entry {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid #bae6fd;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+    }
+
+    .journal-date {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+
+    .journal-text {
+      color: #374151;
+      white-space: pre-wrap;
+      line-height: 1.625;
+    }
+
+    .progress-container {
+      background: linear-gradient(135deg, #f0fdf4, #d1fae5);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      border: 2px solid #86efac;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .progress-label {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .progress-count {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #059669;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      background-color: #a7f3d0;
+      border-radius: 9999px;
+      height: 1rem;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: linear-gradient(to right, #10b981, #22c55e);
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.5s;
+    }
+
+    .stats-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: 2px solid;
+      text-align: center;
+    }
+
+    .stat-icon-circle {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .stat-icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .stat-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      font-size: 1.875rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: #4b5563;
+      margin-top: 0.5rem;
+    }
+
+    .footer {
+      text-center;
+      padding: 2rem 0;
+      border-top: 1px solid #fecdd3;
+    }
+
+    .footer-quote {
+      color: #4b5563;
+      font-style: italic;
+    }
+
+    .affirmation {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 1rem 2rem;
+      border-radius: 9999px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      border: 2px solid #fecdd3;
+      max-width: 32rem;
+      text-align: center;
+      animation: slideUp 0.5s ease-out;
+      z-index: 1000;
+    }
+
+    .affirmation-text {
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 1.875rem;
+      color: #1f2937;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-subtitle {
+      color: #4b5563;
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .animate-fadeIn {
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .mb-4 {
+      margin-bottom: 1rem;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+
+    .space-y-6 > * + * {
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- PORTADA -->
+  <div id="coverPage" class="cover-page">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+
+    <div class="cover-container">
+      <div class="emoji-3d">🧘‍♀️</div>
+      
+      <h1 class="cover-title">Reconecta Contigo</h1>
+      
+      <p class="cover-subtitle">Tu espacio personal para el autoconocimiento y la transformación</p>
+
+      <div class="cover-features">
+        <div class="cover-feature" onclick="toggleCoverCard(0)">
+          <div class="feature-emoji">💭</div>
+          <div class="feature-title">Prácticas Guiadas</div>
+          <div id="coverCard0" class="cover-card-content">
+            <p style="margin-top: 1rem; font-size: 0.875rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+              Ejercicios diseñados para identificar patrones de autoexigencia, desarrollar autocompasión y establecer límites saludables.
+            </p>
+          </div>
+        </div>
+        <div class="cover-feature" onclick="toggleCoverCard(1)">
+          <div class="feature-emoji">💎</div>
+          <div class="feature-title">Descubre tus Valores</div>
+          <div id="coverCard1" class="cover-card-content">
+            <p style="margin-top: 1rem; font-size: 0.875rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+              Conecta con lo que realmente importa en tu vida: autenticidad, honestidad, libertad, compasión, crecimiento, coraje y propósito.
+            </p>
+          </div>
+        </div>
+        <div class="cover-feature" onclick="toggleCoverCard(2)">
+          <div class="feature-emoji">📔</div>
+          <div class="feature-title">Diario Personal</div>
+          <div id="coverCard2" class="cover-card-content">
+            <p style="margin-top: 1rem; font-size: 0.875rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+              Observa la diferencia entre tus "deberías" y tus deseos auténticos. Un espacio para reconectar con tu verdadera voz interior.
+            </p>
+          </div>
+        </div>
+        <div class="cover-feature" onclick="toggleCoverCard(3)">
+          <div class="feature-emoji">🌟</div>
+          <div class="feature-title">Desafíos Conscientes</div>
+          <div id="coverCard3" class="cover-card-content">
+            <p style="margin-top: 1rem; font-size: 0.875rem; color: rgba(255,255,255,0.9); line-height: 1.6;">
+              Rompe reglas autoimpuestas y descubre que el mundo no se colapsa. Reduce el poder de mandatos internos innecesarios.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <button class="cta-button" onclick="startApp()">Comenzar mi viaje</button>
+    </div>
+
+    <div class="footer-info">
+      <div class="author">Silvana García</div>
+      <div class="year">2026</div>
+    </div>
+  </div>
+
+  <!-- APLICACIÓN -->
+  <div id="appPage" class="app-page">
+  <div class="container">
+    <div class="header">
+      <button class="back-btn" id="backBtn">
+        <span id="backArrow"></span>
+        <span id="backText"></span>
+      </button>
+      <div class="icons-group">
+        <svg class="icon" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg class="icon" style="color: #818cf8;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </div>
+    </div>
+
+    <div id="content"></div>
+
+    <div class="footer">
+      <p class="footer-quote">
+        "No eres un proyecto que necesita ser arreglado. Eres una persona que merece ser amada, tal como eres ahora."
+      </p>
+    </div>
+  </div>
+
+  <div id="affirmationContainer"></div>
+  </div>
+  <!-- FIN APLICACIÓN -->
+
+  <script>
+    // Función para iniciar la aplicación desde la portada
+    function startApp() {
+      document.getElementById('coverPage').style.display = 'none';
+      document.getElementById('appPage').classList.add('active');
+      loadProgress();
+      render();
+    }
+
+    // Función para expandir/contraer tarjetas de la portada
+    function toggleCoverCard(index) {
+      const card = document.getElementById('coverCard' + index);
+      const isExpanded = card.classList.contains('expanded');
+      
+      // Cerrar todas las tarjetas
+      for (let i = 0; i < 4; i++) {
+        document.getElementById('coverCard' + i).classList.remove('expanded');
+      }
+      
+      // Expandir la tarjeta clickeada si no estaba expandida
+      if (!isExpanded) {
+        card.classList.add('expanded');
+      }
+    }
+
+    // Cargar progreso guardado
+    function loadProgress() {
+      const saved = localStorage.getItem('reconectaContigoProgress');
+      if (saved) {
+        const data = JSON.parse(saved);
+        state.completedExercises = data.completedExercises || [];
+        state.journalEntries = data.journalEntries || [];
+        state.selectedValues = data.selectedValues || [];
+        state.perfectionismCheck = data.perfectionismCheck || {};
+        state.selfCompassionScore = data.selfCompassionScore || 0;
+      }
+    }
+
+    // Guardar progreso
+    function saveProgress() {
+      const data = {
+        completedExercises: state.completedExercises,
+        journalEntries: state.journalEntries,
+        selectedValues: state.selectedValues,
+        perfectionismCheck: state.perfectionismCheck,
+        selfCompassionScore: state.selfCompassionScore,
+        lastUpdated: new Date().toISOString()
+      };
+      localStorage.setItem('reconectaContigoProgress', JSON.stringify(data));
+    }
+
+    const state = {
+      activeSection: 'home',
+      completedExercises: [],
+      journalEntries: [],
+      selectedValues: [], // Cambiado de selectedValue a array
+      perfectionismCheck: {},
+      selfCompassionScore: 0,
+      expandedCoverCard: null // Para controlar qué tarjeta de portada está expandida
+    };
+
+    const affirmations = [
+      "Soy suficiente tal como soy en este momento",
+      "Mis necesidades y deseos son válidos e importantes",
+      "Merezco amor y respeto, especialmente de mí misma",
+      "No tengo que ser perfecta para ser valiosa",
+      "Está bien cometer errores, así aprendo y crezco",
+      "Mi valor no depende de la aprobación de los demás",
+      "Puedo elegir mi propio camino con confianza",
+      "Mis emociones son válidas y merecen ser escuchadas"
+    ];
+
+    const coreValues = [
+      { name: "Autenticidad", description: "Conocerte a ti mismo, poder ser y expresarte con los demás así como crees que eres, así como sientes y así como piensas, incluso si eso significa no encajar en las expectativas ajenas" },
+      { name: "Honestidad", description: "Hacer lo correcto incluso cuando nadie te está mirando. Es la coherencia total entre lo que piensas, lo que dices y lo que haces" },
+      { name: "Libertad/Autonomía", description: "Priorizar la capacidad de elegir tu propio camino y tomar tus propias decisiones. Implica valorar la independencia de pensamiento y acción, evitando que las presiones sociales o familiares dicten el rumbo de tu vida" },
+      { name: "Compasión", description: "Poder reconocer el sufrimiento (propio y ajeno) y tener el deseo genuino de aliviarlo. En el contexto de la autoexigencia, la autocompasión es vital: permite tratarte con la misma amabilidad con la que tratarías a un ser querido que comete un error" },
+      { name: "Crecimiento (Evolución)", description: "Entender la vida como un proceso continuo de aprendizaje y permanente reciclaje. No se trata de alcanzar la 'perfección', sino de ser un poco mejor que ayer. Este valor transforma la curiosidad en un motor de vida constante" },
+      { name: "Coraje/Valentía", description: "No es la ausencia de miedo, sino la decisión de actuar a pesar de él. Es el valor necesario para establecer límites, decir 'no' cuando es necesario, o intentar algo nuevo a pesar del riesgo de fallar" },
+      { name: "Alegría", description: "Disfrutar el momento presente" },
+      { name: "Propósito", description: "El deseo de dejar una huella positiva en el mundo o en la vida de los demás. No tiene que ser algo masivo; puede manifestarse en ayudar a un colega, participar en tu comunidad o simplemente aportar valor a través de tu trabajo diario" }
+    ];
+
+    const perfectionismChecklist = [
+      "Pospongo tareas por miedo a no hacerlas perfectamente",
+      "Me critico duramente por pequeños errores",
+      "Necesito la aprobación de otros para sentirme bien",
+      "Evito situaciones donde podría fallar",
+      "Comparo constantemente mi vida con la de otros",
+      "Me cuesta disfrutar de mis logros",
+      "Pienso que si no cumplo con altos estándares, no valgo lo suficiente"
+    ];
+
+    function markExerciseComplete(exerciseId) {
+      if (!state.completedExercises.includes(exerciseId)) {
+        state.completedExercises.push(exerciseId);
+        saveProgress();
+        showFeedback(exerciseId);
+      }
+    }
+
+    // Mostrar retroalimentación al completar ejercicio
+    function showFeedback(exerciseId) {
+      const feedbacks = {
+        'perfectionism': '¡Excelente! Reconocer tus patrones es el primer paso hacia la transformación. Cada vez que identifiques uno de estos pensamientos, recuerda tratarte con compasión.',
+        'self-compassion': '💜 Hermoso trabajo. Al responder con amabilidad a tu crítico interno, estás construyendo una relación más amorosa contigo misma.',
+        'imperfection': '🌸 Encontrar valor en lo inesperado es una habilidad poderosa. Cada "imperfección" es una oportunidad de aprendizaje.',
+        'boundaries': '💪 Establecer límites es un acto de amor propio. Estás priorizando tu bienestar, y eso es valiente.',
+        'values': '✨ Al conectar con tus valores, reduces tu dependencia de la validación externa. Tu brújula interna se fortalece.',
+        'journal': '📝 Observar la diferencia entre "debería" y "deseo" es fundamental. Estás reconectando con tu verdadera voz.',
+        'break-rule': '🎯 ¡Lo hiciste! El mundo no se colapsó. Has demostrado que muchas reglas autoimpuestas son innecesarias.'
+      };
+
+      const feedback = feedbacks[exerciseId] || '¡Bien hecho! Has completado un paso más en tu camino de crecimiento.';
+      
+      const container = document.getElementById('affirmationContainer');
+      container.innerHTML = `
+        <div class="affirmation" style="max-width: 40rem; background: linear-gradient(135deg, #fef3c7, #fed7aa); border-color: #fbbf24;">
+          <p class="affirmation-text" style="color: #78350f;">${feedback}</p>
+        </div>
+      `;
+
+      setTimeout(() => {
+        container.innerHTML = '';
+      }, 8000);
+    }
+
+    function setActiveSection(section) {
+      state.activeSection = section;
+      render();
+    }
+
+    // Render functions
+    function renderHome() {
+      return `
+        <div class="animate-fadeIn">
+          <div class="home-header">
+            <div class="person-container">
+              <svg class="person-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <div class="person-glow"></div>
+            </div>
+            <h1 class="main-title">Reconecta Contigo</h1>
+            <p class="main-subtitle">
+              Un espacio personal para explorar tus pensamientos, reconocer tus emociones y cultivar una relación más amable contigo misma
+            </p>
+          </div>
+
+          <div class="grid">
+            <button class="card-btn card-rose" onclick="setActiveSection('exercises')">
+              <div class="card-icon-wrapper">
+                <svg style="color: #f43f5e; width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 class="card-title">Prácticas de Autoconocimiento</h3>
+              <p class="card-description">Ejercicios para trabajar patrones y cultivar autocompasión</p>
+              ${state.completedExercises.length > 0 ? `
+                <div class="card-badge" style="color: #f43f5e;">
+                  ✓ ${state.completedExercises.length} ejercicios completados
+                </div>
+              ` : ''}
+            </button>
+
+            <button class="card-btn card-amber" onclick="setActiveSection('values')">
+              <div class="card-icon-wrapper">
+                <svg style="color: #f59e0b; width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <h3 class="card-title">Mis Valores</h3>
+              <p class="card-description">Descubre qué es verdaderamente importante para ti</p>
+              ${state.selectedValues.length > 0 ? `
+                <div class="card-badge" style="color: #f59e0b;">
+                  ✓ ${state.selectedValues.length} ${state.selectedValues.length === 1 ? 'valor seleccionado' : 'valores seleccionados'}
+                </div>
+              ` : ''}
+            </button>
+
+            <button class="card-btn card-sky" onclick="setActiveSection('journal')">
+              <div class="card-icon-wrapper">
+                <svg style="color: #0ea5e9; width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 class="card-title">Diario de Autoconocimiento</h3>
+              <p class="card-description">Explora tus "deberías" y deseos auténticos</p>
+              ${state.journalEntries.length > 0 ? `
+                <div class="card-badge" style="color: #0ea5e9;">
+                  ${state.journalEntries.length} entradas guardadas
+                </div>
+              ` : ''}
+            </button>
+
+            <button class="card-btn card-violet" onclick="setActiveSection('break-rule')">
+              <div class="card-icon-wrapper">
+                <svg style="color: #8b5cf6; width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+              </div>
+              <h3 class="card-title">Desafía una Regla</h3>
+              <p class="card-description">Experimenta romper una norma autoimpuesta</p>
+              ${state.completedExercises.includes('break-rule') ? `
+                <div class="card-badge" style="color: #8b5cf6;">
+                  ✓ Ejercicio completado
+                </div>
+              ` : ''}
+            </button>
+
+            <button class="card-btn card-emerald" onclick="setActiveSection('progress')">
+              <div class="card-icon-wrapper">
+                <svg style="color: #10b981; width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <h3 class="card-title">Mi Progreso</h3>
+              <p class="card-description">Celebra tu camino de transformación</p>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderExercises() {
+      const checkedItems = Object.keys(state.perfectionismCheck).filter(k => state.perfectionismCheck[k]).length;
+      
+      return `
+        <div class="animate-fadeIn">
+          <h2 class="section-title">Prácticas de Autoconocimiento</h2>
+
+          <div class="exercise-card" style="border-color: #fecdd3;">
+            <div class="exercise-header">
+              <div class="exercise-icon-circle" style="background-color: #fff1f2;">
+                <svg class="exercise-icon" style="color: #f43f5e;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="exercise-title">Reconoce tus Patrones</h3>
+                <p class="exercise-subtitle">Identifica cómo se manifiesta la autoexigencia en tu vida</p>
+              </div>
+            </div>
+
+            <div style="padding: 1rem; background-color: #fef2f2; border-radius: 0.75rem; margin-bottom: 1.5rem; border-left: 4px solid #f43f5e;">
+              <p style="color: #374151; font-style: italic;">
+                La autoexigencia extrema no es solo querer hacer las cosas bien; a menudo es un mecanismo de protección para evitar el juicio o la sensación de fracaso.
+              </p>
+            </div>
+            
+            <div class="checkbox-list">
+              <label class="checkbox-item">
+                <input 
+                  type="checkbox" 
+                  class="checkbox-input"
+                  ${state.perfectionismCheck[0] ? 'checked' : ''}
+                  onchange="handlePerfectionismCheck(0)"
+                />
+                <div style="flex: 1;">
+                  <span class="checkbox-label">${perfectionismChecklist[0]}</span>
+                  <div style="margin-top: 0.75rem;">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem;">
+                      ¿Qué proyectos o ideas he pospuesto "hasta que tenga más tiempo" o "hasta que sepa más del tema"?
+                    </p>
+                    <textarea 
+                      placeholder="Escribe aquí tu reflexión..."
+                      rows="2"
+                      style="font-size: 0.875rem;"
+                    ></textarea>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item">
+                <input 
+                  type="checkbox" 
+                  class="checkbox-input"
+                  ${state.perfectionismCheck[1] ? 'checked' : ''}
+                  onchange="handlePerfectionismCheck(1)"
+                />
+                <div style="flex: 1;">
+                  <span class="checkbox-label">${perfectionismChecklist[1]}</span>
+                  <div style="margin-top: 0.75rem;">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem;">
+                      Cuando cometo un error pequeño, ¿qué palabras uso para hablarme a mí mismo? ¿Se lo diría así a un amigo?
+                    </p>
+                    <textarea 
+                      placeholder="Escribe aquí tu reflexión..."
+                      rows="2"
+                      style="font-size: 0.875rem;"
+                    ></textarea>
+                  </div>
+                </div>
+              </label>
+
+              ${perfectionismChecklist.slice(2, 5).map((item, idx) => `
+                <label class="checkbox-item">
+                  <input 
+                    type="checkbox" 
+                    class="checkbox-input"
+                    ${state.perfectionismCheck[idx + 2] ? 'checked' : ''}
+                    onchange="handlePerfectionismCheck(${idx + 2})"
+                  />
+                  <span class="checkbox-label">${item}</span>
+                </label>
+              `).join('')}
+
+              <label class="checkbox-item">
+                <input 
+                  type="checkbox" 
+                  class="checkbox-input"
+                  ${state.perfectionismCheck[5] ? 'checked' : ''}
+                  onchange="handlePerfectionismCheck(5)"
+                />
+                <div style="flex: 1;">
+                  <span class="checkbox-label">${perfectionismChecklist[5]}</span>
+                  <div style="margin-top: 0.75rem;">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 0.5rem;">
+                      Al terminar una presentación o tarea, ¿me enfoco en el único detalle que salió mal o soy capaz de ver el éxito del conjunto?
+                    </p>
+                    <textarea 
+                      placeholder="Escribe aquí tu reflexión..."
+                      rows="2"
+                      style="font-size: 0.875rem;"
+                    ></textarea>
+                  </div>
+                </div>
+              </label>
+
+              <label class="checkbox-item">
+                <input 
+                  type="checkbox" 
+                  class="checkbox-input"
+                  ${state.perfectionismCheck[6] ? 'checked' : ''}
+                  onchange="handlePerfectionismCheck(6)"
+                />
+                <span class="checkbox-label">${perfectionismChecklist[6]}</span>
+              </label>
+            </div>
+
+            ${checkedItems > 0 ? `
+              <div class="info-box info-box-rose">
+                <p style="color: #374151;">
+                  <strong>Recuerda:</strong> Reconocer estos patrones es el primer paso. No te juzgues por identificarte con ellos; 
+                  cada persona tiene sus desafíos únicos y mereces compasión en este proceso.
+                </p>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="exercise-card" style="border-color: #fde68a;">
+            <div class="exercise-header">
+              <div class="exercise-icon-circle" style="background-color: #fffbeb;">
+                <svg class="exercise-icon" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="exercise-title">Diálogo con tu Crítico Interno</h3>
+                <p class="exercise-subtitle">Responde con compasión a tu voz autocrítica</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="quote-box">
+                <p class="quote-label">Tu crítico interno podría decir:</p>
+                <p class="quote-text">"No eres suficiente. Deberías ser mejor. Los demás están decepcionados contigo."</p>
+              </div>
+
+              <div class="response-box response-box-amber">
+                <p class="quote-label">Responde con compasión:</p>
+                <textarea
+                  placeholder="Escribe una respuesta amable y realista... Por ejemplo: 'Estoy haciendo lo mejor que puedo con los recursos que tengo. No necesito ser perfecta para ser valiosa.'"
+                  rows="4"
+                  onblur="handleSelfCompassion(this)"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="exercise-card" style="border-color: #a7f3d0;">
+            <div class="exercise-header">
+              <div class="exercise-icon-circle" style="background-color: #f0fdf4;">
+                <svg class="exercise-icon" style="color: #10b981;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="exercise-title">Abraza lo Inesperado</h3>
+                <p class="exercise-subtitle">Practica encontrar valor en las experiencias imperfectas</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p style="color: #374151;">
+                Piensa en algo que hiciste recientemente que no salió como esperabas. ¿Qué aprendiste? ¿Qué valor encuentras en esa experiencia?
+              </p>
+              <textarea
+                placeholder="Ejemplo: 'Hice una cena que se quemó un poco, pero compartimos risas y fue un momento de conexión auténtica con mi familia...'"
+                rows="5"
+                onblur="handleImperfection(this)"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="exercise-card" style="border-color: #e9d5ff;">
+            <div class="exercise-header">
+              <div class="exercise-icon-circle" style="background-color: #faf5ff;">
+                <svg class="exercise-icon" style="color: #a855f7;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 class="exercise-title">Practica Decir "No"</h3>
+                <p class="exercise-subtitle">Establece límites desde el amor propio</p>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <p style="color: #374151;">
+                Identifica una situación donde normalmente dirías "sí" por complacer a otros, aunque no quieras. 
+                Escribe cómo podrías decir "no" de forma respetuosa pero firme:
+              </p>
+              <textarea
+                placeholder="Ejemplo: 'Agradezco que pienses en mí, pero necesito ese tiempo para cuidarme. No podré ayudarte esta vez.'"
+                rows="4"
+                onblur="handleBoundaries(this)"
+              ></textarea>
+              <div class="info-box info-box-purple">
+                <p style="color: #374151; font-size: 0.875rem;">
+                  💜 <strong>Recuerda:</strong> Decir "no" a otros a veces significa decir "sí" a ti misma. 
+                  Tus necesidades son tan importantes como las de los demás.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderValues() {
+      return `
+        <div class="animate-fadeIn space-y-6">
+          <div class="section-header">
+            <h2 class="section-title">Conecta con tus Valores</h2>
+            <p class="section-subtitle">
+              Cuando vives alineada con tus valores auténticos, la necesidad de aprobación externa disminuye. 
+              Selecciona todos los valores que resuenan contigo (puedes elegir más de uno):
+            </p>
+          </div>
+
+          <div class="value-grid">
+            ${coreValues.map((value, idx) => `
+              <button 
+                class="value-card ${state.selectedValues.includes(idx) ? 'selected' : ''}"
+                onclick="handleValueSelect(${idx})"
+              >
+                <div class="value-card-content">
+                  <div class="value-checkbox ${state.selectedValues.includes(idx) ? 'selected' : ''}">
+                    ${state.selectedValues.includes(idx) ? `
+                      <svg style="width: 1rem; height: 1rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    ` : ''}
+                  </div>
+                  <div style="flex: 1;">
+                    <h3 class="value-name">${value.name}</h3>
+                    <p class="value-description">${value.description}</p>
+                  </div>
+                </div>
+              </button>
+            `).join('')}
+          </div>
+
+          ${state.selectedValues.length > 0 ? `
+            <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #fef3c7, #fed7aa); border-radius: 1rem; border: 2px solid #fbbf24;">
+              <h3 style="font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-bottom: 0.75rem;">
+                ${state.selectedValues.length === 1 ? 'Reflexión sobre tu Valor' : 'Tus Valores Seleccionados'}
+              </h3>
+              ${state.selectedValues.length === 1 ? `
+                <p style="color: #374151; margin-bottom: 1rem;">
+                  ¿Cómo puedes vivir más alineada con "${coreValues[state.selectedValues[0]].name}" esta semana? 
+                  Escribe una acción concreta:
+                </p>
+                <textarea
+                  id="valueReflection"
+                  placeholder="Ejemplo: Si elegiste 'Autenticidad', podrías escribir: 'Voy a compartir mi opinión real en la próxima reunión de equipo, aunque sea diferente a la mayoría.'"
+                  rows="4"
+                  onblur="saveValueReflection()"
+                ></textarea>
+              ` : `
+                <p style="color: #374151; margin-bottom: 1rem;">
+                  Has elegido ${state.selectedValues.length} valores que resuenan contigo:
+                </p>
+                <ul style="color: #374151; padding-left: 1.5rem; margin-bottom: 1rem; line-height: 1.8;">
+                  ${state.selectedValues.map(idx => `<li><strong>${coreValues[idx].name}</strong></li>`).join('')}
+                </ul>
+                <p style="color: #374151; font-size: 0.875rem; font-style: italic;">
+                  💡 Cada uno de estos valores es una brújula que te guía hacia decisiones más alineadas con tu ser auténtico.
+                </p>
+              `}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function renderJournal() {
+      return `
+        <div class="animate-fadeIn space-y-6">
+          <div class="section-header">
+            <h2 class="section-title">Diario de Autoconocimiento</h2>
+            <p class="section-subtitle">
+              Este es un espacio para observar la diferencia entre lo que "debes" hacer y lo que realmente deseas. 
+              No se trata de juzgar ni cambiar, solo de notar y reconocer ambas voces en tu interior.
+            </p>
+          </div>
+
+          <div style="background: white; border-radius: 1.5rem; padding: 2rem; border: 2px solid #bae6fd; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+            <div style="margin-bottom: 1.5rem; padding: 1rem; background: linear-gradient(135deg, #eff6ff, #dbeafe); border-radius: 0.75rem; border-left: 4px solid #0ea5e9;">
+              <h3 style="font-size: 1rem; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">
+                📝 Registro del día
+              </h3>
+              <p style="font-size: 0.875rem; color: #4b5563;">
+                Completa ambas columnas para crear conciencia sobre tus motivaciones internas y externas.
+              </p>
+            </div>
+
+            <div style="display: grid; gap: 1.5rem; margin-bottom: 1.5rem;">
+              <div style="background: #fef2f2; padding: 1.25rem; border-radius: 0.75rem; border: 2px solid #fecaca;">
+                <div style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 1rem;">
+                  <div style="background: #fee2e2; padding: 0.5rem; border-radius: 0.5rem; flex-shrink: 0;">
+                    <svg style="width: 1.25rem; height: 1.25rem; color: #dc2626;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                  </div>
+                  <div style="flex: 1;">
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #991b1b; margin-bottom: 0.25rem;">
+                      El Mandato (Lo que "DEBERÍA")
+                    </h4>
+                    <p style="font-size: 0.875rem; color: #7f1d1d;">
+                      Hoy hice/sentí/pensé esto PORQUE DEBÍA/ERA NECESARIO/TENÍA QUE...
+                    </p>
+                  </div>
+                </div>
+                <textarea
+                  id="mandatoText"
+                  placeholder="Ejemplo: 'Fui a trabajar, aunque no quería, PORQUE TENÍA QUE ser responsable' o 'Dije que sí a ese compromiso PORQUE DEBÍA quedar bien con esa persona'..."
+                  rows="4"
+                  style="width: 100%; padding: 0.75rem; border: 1px solid #fca5a5; border-radius: 0.5rem; background: white; font-size: 0.875rem;"
+                ></textarea>
+              </div>
+
+              <div style="background: #f0fdf4; padding: 1.25rem; border-radius: 0.75rem; border: 2px solid #bbf7d0;">
+                <div style="display: flex; align-items: start; gap: 0.75rem; margin-bottom: 1rem;">
+                  <div style="background: #dcfce7; padding: 0.5rem; border-radius: 0.5rem; flex-shrink: 0;">
+                    <svg style="width: 1.25rem; height: 1.25rem; color: #16a34a;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                  </div>
+                  <div style="flex: 1;">
+                    <h4 style="font-size: 1rem; font-weight: 600; color: #166534; margin-bottom: 0.25rem;">
+                      El Atisbo de Deseo (Lo que realmente quiero)
+                    </h4>
+                    <p style="font-size: 0.875rem; color: #14532d;">
+                      En algún momento del día, por pequeño que fuera, noté que me gustaba/prefería/deseaba...
+                    </p>
+                  </div>
+                </div>
+                <textarea
+                  id="deseoText"
+                  placeholder="Ejemplo: 'Mientras tomaba café, elegí quedarme mirando por la ventana 5 minutos porque me daba paz' o 'Me apetecía escuchar una canción específica y lo hice'..."
+                  rows="4"
+                  style="width: 100%; padding: 0.75rem; border: 1px solid #86efac; border-radius: 0.5rem; background: white; font-size: 0.875rem;"
+                ></textarea>
+              </div>
+            </div>
+
+            <div style="padding: 1rem; background: #fefce8; border-radius: 0.75rem; border-left: 4px solid #facc15; margin-bottom: 1rem;">
+              <p style="font-size: 0.875rem; color: #713f12;">
+                <strong>💡 Recuerda:</strong> No buscamos cambiar tu conducta inicialmente, solo notarla. 
+                Observar la diferencia entre el "debo" y el "deseo" es el primer paso para reconectar con tu verdadera voz interior.
+              </p>
+            </div>
+
+            <button 
+              class="btn-primary"
+              onclick="handleJournalSaveTwoColumns()"
+            >
+              Guardar Registro del Día
+            </button>
+          </div>
+
+          ${state.journalEntries.length > 0 ? `
+            <div class="space-y-4">
+              <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937;">Registros Anteriores</h3>
+              ${state.journalEntries.map(entry => `
+                <div class="journal-entry">
+                  <p class="journal-date">${entry.date}</p>
+                  <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                    ${entry.mandato ? `
+                      <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #ef4444;">
+                        <p style="font-size: 0.75rem; font-weight: 600; color: #991b1b; margin-bottom: 0.5rem; text-transform: uppercase;">El Mandato</p>
+                        <p style="color: #374151; font-size: 0.875rem; white-space: pre-wrap;">${entry.mandato}</p>
+                      </div>
+                    ` : ''}
+                    ${entry.deseo ? `
+                      <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #22c55e;">
+                        <p style="font-size: 0.75rem; font-weight: 600; color: #166534; margin-bottom: 0.5rem; text-transform: uppercase;">El Deseo</p>
+                        <p style="color: #374151; font-size: 0.875rem; white-space: pre-wrap;">${entry.deseo}</p>
+                      </div>
+                    ` : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function renderBreakRule() {
+      return `
+        <div class="animate-fadeIn space-y-6">
+          <div class="section-header">
+            <h2 class="section-title">Romper una Regla Autoimpuesta</h2>
+            <p class="section-subtitle">
+              Desafía tu rigidez interna identificando y rompiendo deliberadamente una regla personal que no tiene consecuencias reales negativas.
+            </p>
+          </div>
+
+          <div class="exercise-card" style="border-color: #ddd6fe;">
+            <div style="padding: 1rem; background: linear-gradient(135deg, #faf5ff, #f3e8ff); border-radius: 0.75rem; margin-bottom: 1.5rem; border-left: 4px solid #8b5cf6;">
+              <p style="color: #374151; font-style: italic;">
+                <strong>🎯 Propósito:</strong> Mostrar que el mundo no se colapsa si no sigues una regla autoimpuesta. 
+                Las consecuencias reales son mucho menos graves que las que imaginas.
+              </p>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="background: #8b5cf6; color: white; width: 1.75rem; height: 1.75rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700;">1</span>
+                  Identifica tu regla autoimpuesta
+                </h3>
+                <p style="color: #4b5563; margin-bottom: 1rem; font-size: 0.875rem;">
+                  Piensa en una regla interna absurda o poco funcional que te impongas. <strong>Importante:</strong> Debe ser una regla personal, NO una norma social.
+                </p>
+                <div style="background: #f5f3ff; padding: 1rem; border-radius: 0.75rem; margin-bottom: 1rem; border: 1px solid #ddd6fe;">
+                  <p style="font-size: 0.875rem; color: #5b21b6; margin-bottom: 0.5rem;"><strong>Ejemplos de reglas válidas:</strong></p>
+                  <ul style="font-size: 0.875rem; color: #4b5563; list-style-type: disc; padding-left: 1.5rem; line-height: 1.75;">
+                    <li>"Debo ordenar completamente el escritorio antes de empezar a trabajar"</li>
+                    <li>"Nunca puedo dejar un plato en la pileta, ni siquiera 10 minutos"</li>
+                    <li>"Debo responder todos los mensajes inmediatamente"</li>
+                    <li>"No puedo salir de casa sin maquillarme"</li>
+                    <li>"Debo terminar un libro antes de empezar otro"</li>
+                  </ul>
+                </div>
+                <textarea
+                  id="ruleText"
+                  placeholder="Escribe aquí tu regla autoimpuesta..."
+                  rows="3"
+                  style="margin-bottom: 0.5rem;"
+                ></textarea>
+              </div>
+
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="background: #8b5cf6; color: white; width: 1.75rem; height: 1.75rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700;">2</span>
+                  Antes de romperla: ¿Qué temes que pase?
+                </h3>
+                <p style="color: #4b5563; margin-bottom: 1rem; font-size: 0.875rem;">
+                  Escribe tus predicciones catastróficas. ¿Qué crees que sucederá si no sigues esta regla?
+                </p>
+                <textarea
+                  id="beforeText"
+                  placeholder="Ejemplo: 'Si no ordeno mi escritorio, no podré concentrarme en nada y el día será un desastre total'..."
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div style="background: #fef3c7; padding: 1.25rem; border-radius: 0.75rem; border: 2px solid #fbbf24;">
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #92400e; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <svg style="width: 1.5rem; height: 1.5rem; color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  El Experimento
+                </h3>
+                <p style="color: #78350f; font-size: 0.875rem;">
+                  Ahora viene la parte importante: <strong>rompe deliberadamente esta regla una vez.</strong> 
+                  Observa lo que realmente sucede, no lo que imaginas que sucederá.
+                </p>
+              </div>
+
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="background: #8b5cf6; color: white; width: 1.75rem; height: 1.75rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700;">3</span>
+                  Después de romperla: ¿Qué pasó realmente?
+                </h3>
+                <p style="color: #4b5563; margin-bottom: 1rem; font-size: 0.875rem;">
+                  Registra las consecuencias reales y tus emociones durante y después del experimento.
+                </p>
+                <textarea
+                  id="afterText"
+                  placeholder="Ejemplo: 'Empecé a trabajar sin ordenar. Me sentí un poco ansioso al principio, pero después de 10 minutos estaba concentrado. Terminé mi tarea sin problema. El escritorio siguió desordenado y no pasó nada malo'..."
+                  rows="5"
+                ></textarea>
+              </div>
+
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="background: #8b5cf6; color: white; width: 1.75rem; height: 1.75rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700;">4</span>
+                  Reflexión final
+                </h3>
+                <p style="color: #4b5563; margin-bottom: 1rem; font-size: 0.875rem;">
+                  ¿Qué aprendiste sobre esta regla? ¿Era realmente necesaria? ¿Qué poder tenía sobre ti?
+                </p>
+                <textarea
+                  id="reflectionText"
+                  placeholder="Escribe tu reflexión..."
+                  rows="4"
+                  onblur="handleBreakRuleComplete(this)"
+                ></textarea>
+              </div>
+
+              <div style="padding: 1rem; background: #f0fdf4; border-radius: 0.75rem; border-left: 4px solid #22c55e;">
+                <p style="font-size: 0.875rem; color: #166534;">
+                  <strong>🌱 Aprendizaje clave:</strong> La mayoría de nuestras reglas autoimpuestas son innecesarias y nos limitan. 
+                  Desafiarlas reduce su poder y aumenta tu flexibilidad psicológica.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProgress() {
+      const totalExercises = 8;
+      const progress = (state.completedExercises.length / totalExercises) * 100;
+
+      return `
+        <div class="animate-fadeIn space-y-6">
+          <div class="section-header">
+            <h2 class="section-title">Tu Camino de Crecimiento</h2>
+            <p class="section-subtitle">
+              El crecimiento personal no es lineal. Celebra cada pequeño paso que das hacia tu bienestar.
+            </p>
+          </div>
+
+          <div class="progress-container">
+            <div class="progress-header">
+              <span class="progress-label">Ejercicios Completados</span>
+              <span class="progress-count">${state.completedExercises.length}/${totalExercises}</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: ${progress}%"></div>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card" style="border-color: #fecdd3;">
+              <div class="stat-icon-circle" style="background-color: #fff1f2;">
+                <svg class="stat-icon" style="color: #f43f5e;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 class="stat-title">Autocompasión</h3>
+              <p class="stat-value" style="color: #f43f5e;">${state.selfCompassionScore}</p>
+              <p class="stat-label">momentos practicados</p>
+            </div>
+
+            <div class="stat-card" style="border-color: #bae6fd;">
+              <div class="stat-icon-circle" style="background-color: #f0f9ff;">
+                <svg class="stat-icon" style="color: #0ea5e9;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 class="stat-title">Diario</h3>
+              <p class="stat-value" style="color: #0ea5e9;">${state.journalEntries.length}</p>
+              <p class="stat-label">entradas escritas</p>
+            </div>
+
+            <div class="stat-card" style="border-color: #fde68a;">
+              <div class="stat-icon-circle" style="background-color: #fffbeb;">
+                <svg class="stat-icon" style="color: #f59e0b;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <h3 class="stat-title">Días Activos</h3>
+              <p class="stat-value" style="color: #f59e0b;">1</p>
+              <p class="stat-label">conectando contigo</p>
+            </div>
+          </div>
+
+          <div style="background: white; border-radius: 1.5rem; padding: 2rem; border: 2px solid #e9d5ff;">
+            <h3 style="font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-bottom: 1rem;">Reflexiones de Cierre</h3>
+            <div class="space-y-4">
+              <div style="padding: 1rem; background: #faf5ff; border-radius: 0.75rem;">
+                <p style="color: #374151;">
+                  💜 <strong>Recuerda:</strong> El crecimiento personal no significa nunca sentir dolor o duda. 
+                  Significa desarrollar una relación más compasiva contigo misma en esos momentos.
+                </p>
+              </div>
+              <div style="padding: 1rem; background: #fff1f2; border-radius: 0.75rem;">
+                <p style="color: #374151;">
+                  🌸 <strong>Tu valor es inherente:</strong> No tienes que ganarlo, demostrarlo o justificarlo. 
+                  Eres valiosa simplemente por existir.
+                </p>
+              </div>
+              <div style="padding: 1rem; background: #fffbeb; border-radius: 0.75rem;">
+                <p style="color: #374151;">
+                  🌱 <strong>El camino continúa:</strong> Cada día es una nueva oportunidad para elegir 
+                  la autocompasión sobre la autocrítica, la autenticidad sobre la exigencia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Event Handlers
+    function handlePerfectionismCheck(idx) {
+      state.perfectionismCheck[idx] = !state.perfectionismCheck[idx];
+      if (Object.keys(state.perfectionismCheck).length === perfectionismChecklist.length) {
+        markExerciseComplete('perfectionism');
+      }
+      saveProgress();
+      render();
+    }
+
+    function handleSelfCompassion(textarea) {
+      if (textarea.value.trim().length > 20) {
+        markExerciseComplete('self-compassion');
+        state.selfCompassionScore++;
+        saveProgress();
+        render();
+      }
+    }
+
+    function handleImperfection(textarea) {
+      if (textarea.value.trim().length > 30) {
+        markExerciseComplete('imperfection');
+        saveProgress();
+        render();
+      }
+    }
+
+    function handleBoundaries(textarea) {
+      if (textarea.value.trim().length > 20) {
+        markExerciseComplete('boundaries');
+        saveProgress();
+        render();
+      }
+    }
+
+    function handleValueSelect(idx) {
+      const index = state.selectedValues.indexOf(idx);
+      if (index > -1) {
+        // Si ya está seleccionado, removerlo
+        state.selectedValues.splice(index, 1);
+      } else {
+        // Si no está seleccionado, agregarlo
+        state.selectedValues.push(idx);
+      }
+      
+      if (state.selectedValues.length > 0) {
+        markExerciseComplete('values');
+      }
+      
+      saveProgress();
+      render();
+    }
+
+    function saveValueReflection() {
+      const reflection = document.getElementById('valueReflection');
+      if (reflection && reflection.value.trim().length > 20) {
+        showFeedback('values');
+      }
+    }
+
+    function handleJournalSaveTwoColumns() {
+      const mandatoText = document.getElementById('mandatoText');
+      const deseoText = document.getElementById('deseoText');
+      
+      const mandato = mandatoText ? mandatoText.value.trim() : '';
+      const deseo = deseoText ? deseoText.value.trim() : '';
+      
+      if (mandato || deseo) {
+        state.journalEntries.unshift({
+          mandato: mandato,
+          deseo: deseo,
+          date: new Date().toLocaleString('es-ES'),
+          id: Date.now()
+        });
+        markExerciseComplete('journal');
+        saveProgress();
+        render();
+      }
+    }
+
+    function handleBreakRuleComplete(textarea) {
+      if (textarea.value.trim().length > 30) {
+        markExerciseComplete('break-rule');
+        saveProgress();
+        render();
+      }
+    }
+
+    // Render
+    function render() {
+      const content = document.getElementById('content');
+      const backBtn = document.getElementById('backBtn');
+      const backArrow = document.getElementById('backArrow');
+      const backText = document.getElementById('backText');
+
+      if (state.activeSection === 'home') {
+        backArrow.textContent = '';
+        backText.textContent = '';
+      } else {
+        backArrow.textContent = '←';
+        backText.textContent = 'Inicio';
+      }
+
+      switch (state.activeSection) {
+        case 'home':
+          content.innerHTML = renderHome();
+          break;
+        case 'exercises':
+          content.innerHTML = renderExercises();
+          break;
+        case 'values':
+          content.innerHTML = renderValues();
+          break;
+        case 'journal':
+          content.innerHTML = renderJournal();
+          break;
+        case 'break-rule':
+          content.innerHTML = renderBreakRule();
+          break;
+        case 'progress':
+          content.innerHTML = renderProgress();
+          break;
+      }
+    }
+
+    // Initialize
+    document.getElementById('backBtn').addEventListener('click', function() {
+      if (state.activeSection !== 'home') {
+        setActiveSection('home');
+      }
+    });
+
+    // Affirmation Timer
+    setInterval(function() {
+      const container = document.getElementById('affirmationContainer');
+      const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+      
+      container.innerHTML = `
+        <div class="affirmation">
+          <p class="affirmation-text">✨ ${randomAffirmation}</p>
+        </div>
+      `;
+
+      setTimeout(function() {
+        container.innerHTML = '';
+      }, 5000);
+    }, 30000);
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>
